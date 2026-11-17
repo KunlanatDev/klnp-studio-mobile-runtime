@@ -1,13 +1,9 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../data/models/project_model.dart';
+import '../entities/project.dart';
 
-abstract class ProjectRepository {
-  Future<List<ProjectModel>> getProjects({String? keyword});
-  Future<ProjectModel> getProject(String projectId);
-  Future<ProjectModel> createProject(CreateProjectRequest request);
+abstract interface class ProjectRepository {
+  Future<List<Project>> getProjects({String? keyword});
+  Future<Project> getProject(String projectId);
+  Future<Project> createProject(CreateProjectRequest request);
+  Future<Project> updateProject(UpdateProjectRequest request);
   Future<void> deleteProject(String projectId);
 }
-
-final projectRepositoryProvider = Provider<ProjectRepository>((ref) {
-  throw UnimplementedError('projectRepositoryProvider not overridden');
-});

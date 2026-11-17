@@ -1,3 +1,5 @@
+import '../../domain/entities/project.dart';
+
 class ProjectModel {
   final String id;
   final String workspaceId;
@@ -47,37 +49,18 @@ class ProjectModel {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'workspace_id': workspaceId,
-    'name': name,
-    'slug': slug,
-    'description': description,
-    'icon': icon,
-    'platform': platform,
-    'status': status,
-    'page_count': pageCount,
-    'home_page_id': homePageId,
-    'created_by': createdBy,
-    'created_at': createdAt.toIso8601String(),
-    'updated_at': updatedAt.toIso8601String(),
-  };
-}
-
-class CreateProjectRequest {
-  final String name;
-  final String? description;
-  final String? icon;
-
-  const CreateProjectRequest({
-    required this.name,
-    this.description,
-    this.icon,
-  });
-
-  Map<String, dynamic> toJson() => {
-    'name': name,
-    if (description != null) 'description': description,
-    if (icon != null) 'icon': icon,
-  };
+  Project toEntity() => Project(
+        id: id,
+        workspaceId: workspaceId,
+        name: name,
+        slug: slug,
+        description: description,
+        icon: icon,
+        platform: platform,
+        status: status,
+        pageCount: pageCount,
+        homePageId: homePageId,
+        createdAt: createdAt,
+        updatedAt: updatedAt,
+      );
 }

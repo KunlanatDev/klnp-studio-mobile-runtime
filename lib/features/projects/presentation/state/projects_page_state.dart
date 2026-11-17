@@ -1,26 +1,36 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../data/models/project_model.dart';
+
+import '../../domain/entities/project.dart';
 
 class ProjectsPageState {
-  final AsyncValue<List<ProjectModel>> projects;
-  final bool isCreating;
+  final AsyncValue<List<Project>> datas;
+  final bool isRefreshing;
+  final bool isSaving;
   final String keyword;
+  final Project? selectedItem;
 
   const ProjectsPageState({
-    this.projects = const AsyncLoading(),
-    this.isCreating = false,
+    this.datas = const AsyncLoading(),
+    this.isRefreshing = false,
+    this.isSaving = false,
     this.keyword = '',
+    this.selectedItem,
   });
 
   ProjectsPageState copyWith({
-    AsyncValue<List<ProjectModel>>? projects,
-    bool? isCreating,
+    AsyncValue<List<Project>>? datas,
+    bool? isRefreshing,
+    bool? isSaving,
     String? keyword,
+    Project? selectedItem,
+    bool clearSelectedItem = false,
   }) {
     return ProjectsPageState(
-      projects: projects ?? this.projects,
-      isCreating: isCreating ?? this.isCreating,
+      datas: datas ?? this.datas,
+      isRefreshing: isRefreshing ?? this.isRefreshing,
+      isSaving: isSaving ?? this.isSaving,
       keyword: keyword ?? this.keyword,
+      selectedItem: clearSelectedItem ? null : (selectedItem ?? this.selectedItem),
     );
   }
 }

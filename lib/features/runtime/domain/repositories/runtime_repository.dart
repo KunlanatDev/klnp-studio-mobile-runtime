@@ -1,4 +1,5 @@
-abstract interface class RuntimeRepository {
-  Future<Map<String, dynamic>> fetchDocument(String pageId);
-}
+import '../entities/runtime_node.dart';
 
+abstract interface class RuntimeRepository {
+  Future<RuntimeNode> fetchDocument(String pageId);
+}

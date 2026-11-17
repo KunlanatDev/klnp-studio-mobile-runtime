@@ -1,14 +1,13 @@
+import '../../domain/entities/runtime_node.dart';
 import '../../domain/repositories/runtime_repository.dart';
-import '../datasources/runtime_remote_data_source.dart';
+import '../services/runtime_api_service.dart';
 
 class RuntimeRepositoryImpl implements RuntimeRepository {
-  final RuntimeRemoteDataSource remoteDataSource;
+  final RuntimeApiService _api;
 
-  RuntimeRepositoryImpl(this.remoteDataSource);
+  const RuntimeRepositoryImpl(this._api);
 
   @override
-  Future<Map<String, dynamic>> fetchDocument(String pageId) {
-    return remoteDataSource.fetchDocument(pageId);
-  }
+  Future<RuntimeNode> fetchDocument(String pageId) async =>
+      RuntimeNode.fromJson(await _api.fetchDocument(pageId));
 }
-
