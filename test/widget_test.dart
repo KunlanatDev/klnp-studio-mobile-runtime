@@ -3,10 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:klnp_studio_runtime/app/app.dart';
 
 void main() {
-  testWidgets('KLNP Studio runtime smoke test', (WidgetTester tester) async {
-    await tester.pumpWidget(const ProviderScope(child: KlnpStudioApp()));
+  testWidgets('KLNP Studio runtime preview smoke test', (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: KLNPStudioApp()));
+    await tester.pumpAndSettle();
 
-    expect(find.text('KLNP Studio'), findsOneWidget);
-    expect(find.text('Native Runtime · MVP 1'), findsOneWidget);
+    expect(find.text('KLNP Studio · Runtime Preview'), findsOneWidget);
+    expect(find.text('My First App'), findsOneWidget);
+    expect(find.text('Welcome!'), findsOneWidget);
+    expect(find.text('Build something amazing with KLNP Studio.'), findsOneWidget);
+    expect(find.text('Get Started'), findsOneWidget);
   });
 }
